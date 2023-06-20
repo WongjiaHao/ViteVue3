@@ -2,7 +2,7 @@
  * @Author: Wenjiahao
  * @Date: 2023-06-19 00:00:44
  * @LastEditors: wenjiahao
- * @LastEditTime: 2023-06-21 00:27:47
+ * @LastEditTime: 2023-06-19 17:00:01
  * @FilePath: \Mall\src\views\Layout\index.vue
  * @Description: 
 -->
@@ -24,8 +24,7 @@ onMounted(()=>{
       <LayoutNav></LayoutNav>
       <LayoutHeader></LayoutHeader>
       <RouterView />
-      <!-- 1.如下破坏复用机制 强制销毁重启 破坏路由缓存   2.路由守卫监听路由-->
-      <!-- <RouterView :key="Sroute.fullpath"/> -->
+      <RouterView :key="Sroute.fullpath"/>
       <LayoutFooter></LayoutFooter>
   </div>
 </template>

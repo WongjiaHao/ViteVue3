@@ -3,7 +3,7 @@
 import { useCategoryStore } from '@/stores/category.js'
 const categoryStore = useCategoryStore();
 const ifActive = () => {
-    return true
+    
 }
 </script>
 

@@ -1,27 +1,15 @@
-<!--
- * @Author: Wenjiahao
- * @Date: 2023-06-19 00:25:44
- * @LastEditors: wenjiahao
- * @LastEditTime: 2023-06-21 01:42:31
- * @FilePath: \Mall\src\views\Category\index.vue
- * @Description: 
--->
 <script setup>
-// import { useRoute,useRouter,onBeforeRouteUpdate } from 'vue-router'
-import { useBanner } from '@/composables/useBanner'
-import { useCategory } from '@/composables/useCategory'
-const categoryData = useCategory()
-const bannerList = useBanner(2);
-
-//watch同样可以监听变化，不过得通过router
-// const router = useRouter()
-// watch(router.currentRoute, async (nv, ov) => {
-//   // console.log('nv',nv);
-//   console.log('ov',ov);
-//   const res = await getTopCategory(nv.params.id)
-//   // console.log(res)
-//   categoryData.value = res.result
-// },{deep:true,immediate: true})
+import { getTopCategory }from '@/apis/categoryAPI.js'
+import { ref,onMounted } from "vue";
+import { useRoute } from 'vue-router';
+const topCategory = ref();
+const {params:{id}} = useRoute()
+onMounted( () => {
+  console.log(id);
+  // const res = await getTopCategory();
+  // console.log(res,useRoute);
+  // topCategory.value = res.result
+})
 </script>
 
 <template>
@@ -29,22 +17,15 @@ const bannerList = useBanner(2);
     <div class="container m-top-20">
       <!-- 面包屑 -->
       <div class="bread-container">
-        <el-breadcrumb separator="/">
+        <el-breadcrumb separator=">">
           <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
-          <el-breadcrumb-item>{{categoryData?.name}}</el-breadcrumb-item>
+          <el-breadcrumb-item>居家</el-breadcrumb-item>
         </el-breadcrumb>
-      </div>
-      <!-- 轮播图 -->
-      <div class="home-banner">
-        <el-carousel height="500px">
-          <el-carousel-item v-for="item in bannerList" :key="item.id">
-            <img :src="item.imgUrl" alt="" />
-          </el-carousel-item>
-        </el-carousel>
       </div>
     </div>
   </div>
 </template>
+
 
 <style scoped lang="scss">
 .top-category {
@@ -68,6 +49,7 @@ const bannerList = useBanner(2);
       li {
         width: 168px;
         height: 160px;
+
 
         a {
           text-align: center;
@@ -122,22 +104,10 @@ const bannerList = useBanner(2);
   .bread-container {
     padding: 25px 0;
   }
-
-  .home-banner {
-    width: 1240px;
-    height: 500px;
-    margin: 0 auto;
-    z-index: 98;
-
-    img {
-      width: 100%;
-      height: 500px;
-    }
-  }
 }
 </style>
 <script>
 export default {
-  name: 'categoryPage'
-}
+  name: 'categoryPage',
+};
 </script>

@@ -2,16 +2,30 @@
  * @Author: Wenjiahao
  * @Date: 2023-06-19 00:25:44
  * @LastEditors: wenjiahao
- * @LastEditTime: 2023-06-21 01:42:31
+ * @LastEditTime: 2023-06-21 01:35:33
  * @FilePath: \Mall\src\views\Category\index.vue
  * @Description: 
 -->
 <script setup>
-// import { useRoute,useRouter,onBeforeRouteUpdate } from 'vue-router'
+
+import { ref, onMounted, watch } from 'vue'
+import { useRoute,useRouter,onBeforeRouteUpdate } from 'vue-router'
 import { useBanner } from '@/composables/useBanner'
-import { useCategory } from '@/composables/useCategory'
-const categoryData = useCategory()
+const categoryData = ref(null)
+const routes = useRoute()
+const {
+  params: { id }
+} = routes
+// const curid = ref(id)
 const bannerList = useBanner(2);
+
+onBeforeRouteUpdate( async (to)=>{
+  // console.log(to);
+  const res = await getTopCategory(to.params.id);
+  console.log(res)
+  categoryData.value = res.result
+})
+
 
 //watch同样可以监听变化，不过得通过router
 // const router = useRouter()

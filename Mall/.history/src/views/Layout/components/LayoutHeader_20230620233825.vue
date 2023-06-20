@@ -2,9 +2,7 @@
 // import { onMounted, ref } from 'vue'
 import { useCategoryStore } from '@/stores/category.js'
 const categoryStore = useCategoryStore();
-const ifActive = () => {
-    return true
-}
+
 </script>
 
 <template>
@@ -15,7 +13,7 @@ const ifActive = () => {
       </h1>
       <ul class="app-header-nav">
         <li class="home">
-          <RouterLink :active-class="ifActive" to="/">首页</RouterLink>
+          <RouterLink :active-class="`active`" to="/">首页</RouterLink>
         </li>
         <li v-for="item in categoryStore.headerList" :key="item.id">
           <RouterLink active-class="active" :to="`/category/${item.id}`" >{{ item.name }}</RouterLink>

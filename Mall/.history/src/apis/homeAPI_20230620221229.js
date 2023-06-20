@@ -8,19 +8,9 @@
  */
 import $api from '@/apis/index'
 
-// export const getBanner = () => {
-//   return $api({
-//     url: 'home/banner'
-//   })
-// }
-export const getBanner = (params={}) => {
-  // 默认为1 商品为2
-  const { distributionSite = '1' } = params
+export const getBanner = () => {
   return $api({
-    url: '/home/banner',
-    params: {
-      distributionSite
-    }
+    url: 'home/banner'
   })
 }
 

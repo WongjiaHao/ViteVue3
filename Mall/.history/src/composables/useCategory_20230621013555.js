@@ -1,0 +1,1 @@
+import { getTopCategory } from '@/apis/categoryAPI.js'
