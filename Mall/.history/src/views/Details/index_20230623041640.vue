@@ -2,7 +2,7 @@
  * @Author: Wenjiahao
  * @Date: 2023-06-22 02:44:03
  * @LastEditors: wenjiahao
- * @LastEditTime: 2023-06-23 04:16:40
+ * @LastEditTime: 2023-06-23 04:07:45
  * @FilePath: \Mall\src\views\Details\index.vue
  * @Description: 
 -->

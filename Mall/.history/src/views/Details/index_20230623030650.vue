@@ -2,7 +2,7 @@
  * @Author: Wenjiahao
  * @Date: 2023-06-22 02:44:03
  * @LastEditors: wenjiahao
- * @LastEditTime: 2023-06-23 04:16:40
+ * @LastEditTime: 2023-06-23 03:06:50
  * @FilePath: \Mall\src\views\Details\index.vue
  * @Description: 
 -->
@@ -11,7 +11,7 @@ import { getDetail } from '@/apis/detail'
 import { onMounted, ref } from 'vue'
 import { useRoute } from 'vue-router'
 import DetailHot from './components/DetailHot.vue'
-import SKU from '@/components/Sku/index.vue'
+import imageView from '@/components/imageView.vue'
 const detailData = ref(null);
 const categoryTree = ref([]);
 const route = useRoute()
@@ -21,7 +21,6 @@ onMounted( async() => {
     categoryTree.value = detailData.value.categories
     categoryTree.value = buildTree(categoryTree.value)
     console.log(res.result);
-    console.log(detailData.value.mainPictures);
     
 })
 
@@ -56,7 +55,7 @@ const buildTree = (UnBuild) =>{
           <div class="goods-info">
             <div class="media">
               <!-- 图片预览区 -->
-                <ImageView :image-list="detailData?.mainPictures"></ImageView>
+                <imageView :imgData="detailData?.value?.mainPictures"></imageView>
               <!-- 统计数量 -->
               <ul class="goods-sales">
                 <li>
@@ -105,7 +104,7 @@ const buildTree = (UnBuild) =>{
                 </dl>
               </div>
               <!-- sku组件 -->
-              <XXTT :goods="detailData" />
+
               <!-- 数据组件 -->
 
               <!-- 按钮组件 -->

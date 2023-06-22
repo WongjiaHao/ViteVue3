@@ -2,7 +2,7 @@
  * @Author: Wenjiahao
  * @Date: 2023-06-22 02:44:03
  * @LastEditors: wenjiahao
- * @LastEditTime: 2023-06-23 04:16:40
+ * @LastEditTime: 2023-06-22 23:55:49
  * @FilePath: \Mall\src\views\Details\index.vue
  * @Description: 
 -->
@@ -11,7 +11,6 @@ import { getDetail } from '@/apis/detail'
 import { onMounted, ref } from 'vue'
 import { useRoute } from 'vue-router'
 import DetailHot from './components/DetailHot.vue'
-import SKU from '@/components/Sku/index.vue'
 const detailData = ref(null);
 const categoryTree = ref([]);
 const route = useRoute()
@@ -21,7 +20,6 @@ onMounted( async() => {
     categoryTree.value = detailData.value.categories
     categoryTree.value = buildTree(categoryTree.value)
     console.log(res.result);
-    console.log(detailData.value.mainPictures);
     
 })
 
@@ -56,7 +54,7 @@ const buildTree = (UnBuild) =>{
           <div class="goods-info">
             <div class="media">
               <!-- 图片预览区 -->
-                <ImageView :image-list="detailData?.mainPictures"></ImageView>
+
               <!-- 统计数量 -->
               <ul class="goods-sales">
                 <li>
@@ -105,7 +103,7 @@ const buildTree = (UnBuild) =>{
                 </dl>
               </div>
               <!-- sku组件 -->
-              <XXTT :goods="detailData" />
+
               <!-- 数据组件 -->
 
               <!-- 按钮组件 -->
@@ -139,8 +137,8 @@ const buildTree = (UnBuild) =>{
             </div>
             <!-- 24热榜+专题推荐 -->
             <div class="goods-aside">
-                <DetailHot :title="`day`" :limit="4"></DetailHot>
-                <DetailHot :title="`week`" :limit="5"></DetailHot>
+                <DetailHot ></DetailHot>
+                <DetailHot ></DetailHot>
             </div>
           </div>
         </div>

@@ -18,7 +18,7 @@ import {lazyLoad} from '@/directives/index.js'
 import { componentPlugin } from '@/components/componentPlugin'
 
 const app = createApp(App);
-app.use(componentPlugin)
+
 app.use(createPinia())
 app.use(router)
 app.use(lazyLoad)

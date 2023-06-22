@@ -2,7 +2,7 @@
  * @Author: Wenjiahao
  * @Date: 2023-06-22 02:44:03
  * @LastEditors: wenjiahao
- * @LastEditTime: 2023-06-23 04:16:40
+ * @LastEditTime: 2023-06-23 04:07:45
  * @FilePath: \Mall\src\views\Details\index.vue
  * @Description: 
 -->
@@ -11,7 +11,7 @@ import { getDetail } from '@/apis/detail'
 import { onMounted, ref } from 'vue'
 import { useRoute } from 'vue-router'
 import DetailHot from './components/DetailHot.vue'
-import SKU from '@/components/Sku/index.vue'
+// import ImageView from '@/components/imageView/index.vue'
 const detailData = ref(null);
 const categoryTree = ref([]);
 const route = useRoute()
@@ -105,7 +105,7 @@ const buildTree = (UnBuild) =>{
                 </dl>
               </div>
               <!-- sku组件 -->
-              <XXTT :goods="detailData" />
+              <!-- <XXTT :goods="detailData" /> -->
               <!-- 数据组件 -->
 
               <!-- 按钮组件 -->
