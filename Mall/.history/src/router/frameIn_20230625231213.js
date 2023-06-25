@@ -2,7 +2,7 @@
  * @Author: Wenjiahao
  * @Date: 2023-06-19 00:08:35
  * @LastEditors: wenjiahao
- * @LastEditTime: 2023-06-25 23:25:37
+ * @LastEditTime: 2023-06-25 19:42:37
  * @FilePath: \Mall\src\router\frameIn.js
  * @Description:
  */
@@ -47,8 +47,8 @@ const frameIn = [
   },
   {
     name: 'pay',
-    path: '/pay', 
-    component: () => import('@/views/Pay/index.vue'),
+    path: '/pay?id', 
+    component: () => import('@/views/Checkout/index.vue'),
   }
   // {
   //     name: 'user',

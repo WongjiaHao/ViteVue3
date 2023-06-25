@@ -34,7 +34,8 @@ export const useCartStore = defineStore(
         cartList.value.splice(index, 1)
       } else {
         await deleteCart([skuId])
-        updateNewCart()
+        const res = await findNewCartList()
+        cartList.value = res.result
       }
     }
     const mergrCarts = async () => {
@@ -47,11 +48,10 @@ export const useCartStore = defineStore(
           }
         })
       )
-      updateNewCart()
     }
     const updateNewCart = async () => {
       const res = await findNewCartList()
-      cartList.value = res.result
+      cartList.value = [...cartList.value, ...res.result]
     }
 
     const clearCart = () => {
@@ -71,9 +71,6 @@ export const useCartStore = defineStore(
       item.selected = changevalue
     }
     const selectAll = computed(() => {
-      if (cartList.value.length===0){
-        return false
-      }
       return cartList.value.map((it) => it.selected).every((i) => i == true)
     })
     const selectedTotalCount = computed(() => {
@@ -103,8 +100,7 @@ export const useCartStore = defineStore(
       selectedTotalCount,
       selectedTotalPrice,
       clearCart,
-      updateNewCart,
-      mergrCarts
+      updateNewCart
     }
   },
   {

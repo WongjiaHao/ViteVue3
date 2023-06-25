@@ -1,17 +1,12 @@
 <script setup>
 import { useCartStore } from '@/stores/cart.js'
-import {useRouter } from 'vue-router'
 import { ref, watch ,onMounted,onUpdated} from 'vue'
-const cartStore = useCartStore();
-const router = useRouter()
-// const cartList = cartStore?.cartList 
+const cartStore = useCartStore()
+const cartList = cartStore?.cartList //处理时
 // const selectAll = ref(cartList.map(it=>it.selected).every(i=>i==true))
 onUpdated(() => {
     console.log('getter',cartStore.selectAll);  //cartStore.selectAll为getter的值
 })
-const toCheckout =()=>{
-    router.push({path:'/checkout'})
-}
 </script>
 
 <template>
@@ -44,7 +39,7 @@ const toCheckout =()=>{
                   </div>
                 </td>
               </tr>
-              <tr v-for="i in cartStore?.cartList" :key="i.id" v-else>
+              <tr v-for="i in cartList" :key="i.id" v-else>
                 <td>
                   <el-checkbox :model-value = 'i.selected' @change="(changevalue)=>{cartStore.singleCheck(changevalue,i.skuId);
                 }"/>
@@ -94,7 +89,7 @@ const toCheckout =()=>{
           <span class="red">¥ {{ cartStore.selectedTotalPrice }}</span>
         </div>
         <div class="total">
-          <el-button size="large" type="primary" @click="toCheckout">下单结算</el-button>
+          <el-button size="large" type="primary">下单结算</el-button>
         </div>
       </div>
     </div>

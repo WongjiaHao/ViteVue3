@@ -27,10 +27,12 @@ export const deleteCart = (ids) => {
   })
 }
 
-export const mergeCart = (data) =>{
+export const mergeCart = () =>{
   return $api({
     url: '/member/cart/merge',
     method: 'POST',
-    data
+    data: {
+      ids
+    }
   })
 }

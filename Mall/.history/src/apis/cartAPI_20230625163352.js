@@ -31,6 +31,10 @@ export const mergeCart = (data) =>{
   return $api({
     url: '/member/cart/merge',
     method: 'POST',
-    data
+    data: {
+      skuId,
+      selected,
+      count
+    }
   })
 }

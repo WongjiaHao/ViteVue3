@@ -1,17 +1,12 @@
 <script setup>
 import { useCartStore } from '@/stores/cart.js'
-import {useRouter } from 'vue-router'
 import { ref, watch ,onMounted,onUpdated} from 'vue'
-const cartStore = useCartStore();
-const router = useRouter()
-// const cartList = cartStore?.cartList 
+const cartStore = useCartStore()
+const cartList = cartStore?.cartList //处理时
 // const selectAll = ref(cartList.map(it=>it.selected).every(i=>i==true))
 onUpdated(() => {
     console.log('getter',cartStore.selectAll);  //cartStore.selectAll为getter的值
 })
-const toCheckout =()=>{
-    router.push({path:'/checkout'})
-}
 </script>
 
 <template>
@@ -35,16 +30,7 @@ const toCheckout =()=>{
           <!-- 商品列表 -->
           <tbody>
             <!-- <el-checkbox-group v-model="checkList"> -->
-                <tr v-if="cartStore?.cartList.length===0">
-                <td colspan="6">
-                  <div class="cart-none">
-                    <el-empty description="购物车列表为空">
-                      <el-button type="primary">随便逛逛</el-button>
-                    </el-empty>
-                  </div>
-                </td>
-              </tr>
-              <tr v-for="i in cartStore?.cartList" :key="i.id" v-else>
+              <tr v-for="i in cartList" :key="i.id">
                 <td>
                   <el-checkbox :model-value = 'i.selected' @change="(changevalue)=>{cartStore.singleCheck(changevalue,i.skuId);
                 }"/>
@@ -74,13 +60,22 @@ const toCheckout =()=>{
                       title="确认删除吗?"
                       confirm-button-text="确认"
                       cancel-button-text="取消"
-                      @confirm="cartStore.delCart(i.skuId)"
+                      @confirm="delCart(i.skuId)"
                     >
                       <template #reference>
                         <a href="javascript:;" >删除</a>
                       </template>
                     </el-popconfirm>
                   </p>
+                </td>
+              </tr>
+              <tr v-if="cartList.length === 0">
+                <td colspan="6">
+                  <div class="cart-none">
+                    <el-empty description="购物车列表为空">
+                      <el-button type="primary">随便逛逛</el-button>
+                    </el-empty>
+                  </div>
                 </td>
               </tr>
             <!-- </el-checkbox-group> -->
@@ -94,7 +89,7 @@ const toCheckout =()=>{
           <span class="red">¥ {{ cartStore.selectedTotalPrice }}</span>
         </div>
         <div class="total">
-          <el-button size="large" type="primary" @click="toCheckout">下单结算</el-button>
+          <el-button size="large" type="primary">下单结算</el-button>
         </div>
       </div>
     </div>

@@ -30,6 +30,7 @@ export const useUserInfoStore = defineStore(
       })
       userInfo.value = res.result
       cartStore.mergrCarts();
+      cartStore.updateNewCart();
       return res
     }
     const clearUserInfo = ()=>{

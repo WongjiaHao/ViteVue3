@@ -71,9 +71,6 @@ export const useCartStore = defineStore(
       item.selected = changevalue
     }
     const selectAll = computed(() => {
-      if (cartList.value.length===0){
-        return false
-      }
       return cartList.value.map((it) => it.selected).every((i) => i == true)
     })
     const selectedTotalCount = computed(() => {

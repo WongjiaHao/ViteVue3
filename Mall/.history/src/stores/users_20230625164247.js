@@ -2,7 +2,7 @@
  * @Author: Wenjiahao
  * @Date: 2023-06-23 22:00:07
  * @LastEditors: wenjiahao
- * @LastEditTime: 2023-06-25 16:47:31
+ * @LastEditTime: 2023-06-25 16:42:43
  * @FilePath: \Mall\src\stores\users.js
  * @Description: 
  */
@@ -29,7 +29,8 @@ export const useUserInfoStore = defineStore(
         password
       })
       userInfo.value = res.result
-      cartStore.mergrCarts();
+      cartStore.updateNewCart();
+      cartStore.updateNewCart();
       return res
     }
     const clearUserInfo = ()=>{

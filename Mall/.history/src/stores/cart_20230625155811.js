@@ -1,7 +1,7 @@
 import { ref, computed } from 'vue'
 import { defineStore } from 'pinia'
 import { useUserInfoStore } from './users.js'
-import { insertCart, deleteCart, findNewCartList, mergeCart } from '@/apis/cartAPI'
+import { insertCart, deleteCart, findNewCartList } from '@/apis/cartAPI'
 //TODO  优化购物车登录与非登录逻辑 以及登出时的操作
 
 export const useCartStore = defineStore(
@@ -37,25 +37,9 @@ export const useCartStore = defineStore(
         updateNewCart()
       }
     }
-    const mergrCarts = async () => {
-      await mergeCart(
-        cartList.value.map((item) => {
-          return {
-            skuId:item.skuId,
-            selected:item.selected,
-            count:item.count
-          }
-        })
-      )
-      updateNewCart()
-    }
-    const updateNewCart = async () => {
-      const res = await findNewCartList()
-      cartList.value = res.result
-    }
-
-    const clearCart = () => {
-      cartList.value.length = 0
+    const updateNewCart =  async ()=>{
+        const res = await findNewCartList()
+        cartList.value = [...cartList.value, ...res.result]
     }
     const totalCount = computed(() => {
       return cartList.value.reduce((pre, cur) => pre + cur.count, 0)
@@ -71,9 +55,6 @@ export const useCartStore = defineStore(
       item.selected = changevalue
     }
     const selectAll = computed(() => {
-      if (cartList.value.length===0){
-        return false
-      }
       return cartList.value.map((it) => it.selected).every((i) => i == true)
     })
     const selectedTotalCount = computed(() => {
@@ -101,10 +82,7 @@ export const useCartStore = defineStore(
       selectAll,
       selectedSwitch,
       selectedTotalCount,
-      selectedTotalPrice,
-      clearCart,
-      updateNewCart,
-      mergrCarts
+      selectedTotalPrice
     }
   },
   {

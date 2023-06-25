@@ -26,11 +26,3 @@ export const deleteCart = (ids) => {
     }
   })
 }
-
-export const mergeCart = (data) =>{
-  return $api({
-    url: '/member/cart/merge',
-    method: 'POST',
-    data
-  })
-}
