@@ -2,8 +2,8 @@
  * @Author: Wenjiahao
  * @Date: 2023-06-19 00:08:35
  * @LastEditors: wenjiahao
- * @LastEditTime: 2023-06-25 23:25:37
- * @FilePath: \Mall\src\router\frameIn.js
+ * @LastEditTime: 2023-06-29 01:27:43
+ * @FilePath: \ViteVue3\Mall\src\router\frameIn.js
  * @Description:
  */
 import Home from '@/views/Home/index.vue'
@@ -49,7 +49,13 @@ const frameIn = [
     name: 'pay',
     path: '/pay', 
     component: () => import('@/views/Pay/index.vue'),
-  }
+  },
+  {
+    name: 'payback',
+    path: '/paycallback', 
+    component: () => import('@/views/PayBack/index.vue'),
+  },
+
   // {
   //     name: 'user',
   //     path: 'user',
